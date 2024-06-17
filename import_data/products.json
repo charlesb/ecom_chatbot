@@ -1,0 +1,83 @@
+[
+    {
+      "name": "ProMax Running Shoes",
+      "category": "Footwear",
+      "description": "High-performance running shoes designed for comfort and durability. Features a breathable mesh upper and responsive cushioning.",
+      "price": 120,
+      "sku": "PMRS123",
+      "tags": ["running", "shoes", "footwear", "breathable", "cushioning"]
+    },
+    {
+      "name": "UltraFlex Yoga Mat",
+      "category": "Fitness Equipment",
+      "description": "Non-slip yoga mat with extra cushioning for maximum comfort. Ideal for yoga, Pilates, and floor exercises.",
+      "price": 45,
+      "sku": "UFYM456",
+      "tags": ["yoga", "mat", "fitness", "non-slip", "cushioning"]
+    },
+    {
+      "name": "PowerLift Dumbbell Set",
+      "category": "Strength Training",
+      "description": "Adjustable dumbbell set with a range of weights from 5 to 50 lbs. Perfect for home workouts and strength training.",
+      "price": 200,
+      "sku": "PLDS789",
+      "tags": ["dumbbells", "strength training", "adjustable", "weights"]
+    },
+    {
+      "name": "SwiftStrike Tennis Racket",
+      "category": "Sports Equipment",
+      "description": "Lightweight and durable tennis racket designed for precision and power. Suitable for players of all skill levels.",
+      "price": 150,
+      "sku": "SSTR101",
+      "tags": ["tennis", "racket", "sports", "lightweight", "durable"]
+    },
+    {
+      "name": "HydroBoost Water Bottle",
+      "category": "Accessories",
+      "description": "Insulated water bottle that keeps drinks cold for up to 24 hours. Made from BPA-free stainless steel.",
+      "price": 25,
+      "sku": "HBWB202",
+      "tags": ["water bottle", "insulated", "BPA-free", "stainless steel"]
+    },
+    {
+      "name": "TrailBlazer Hiking Backpack",
+      "category": "Outdoor Gear",
+      "description": "Rugged hiking backpack with multiple compartments and hydration system compatibility. Designed for long treks and outdoor adventures.",
+      "price": 110,
+      "sku": "TBHB303",
+      "tags": ["hiking", "backpack", "outdoor", "rugged", "hydration system"]
+    },
+    {
+      "name": "ProGear Soccer Ball",
+      "category": "Sports Equipment",
+      "description": "Official size and weight soccer ball with enhanced grip and durability. Ideal for both practice and competitive play.",
+      "price": 30,
+      "sku": "PGSC404",
+      "tags": ["soccer", "ball", "sports", "grip", "durability"]
+    },
+    {
+      "name": "FlexFit Athletic Wear Set",
+      "category": "Apparel",
+      "description": "Comfortable and moisture-wicking athletic wear set including a t-shirt and shorts. Perfect for workouts and casual wear.",
+      "price": 60,
+      "sku": "FFAW505",
+      "tags": ["athletic wear", "apparel", "moisture-wicking", "comfortable"]
+    },
+    {
+      "name": "CoreBalance Stability Ball",
+      "category": "Fitness Equipment",
+      "description": "Stability ball for core strengthening exercises and improved balance. Comes with an air pump for easy inflation.",
+      "price": 35,
+      "sku": "CBSB606",
+      "tags": ["stability ball", "fitness", "core strengthening", "balance"]
+    },
+    {
+      "name": "SpeedMaster Running Watch",
+      "category": "Accessories",
+      "description": "GPS-enabled running watch with heart rate monitoring and fitness tracking features. Water-resistant and lightweight design.",
+      "price": 180,
+      "sku": "SMRW707",
+      "tags": ["running watch", "GPS", "heart rate monitoring", "fitness tracking", "water-resistant"]
+    }
+  ]
+  
