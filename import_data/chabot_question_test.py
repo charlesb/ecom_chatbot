@@ -17,7 +17,7 @@ openaiclient = OpenAI(
 
 # Define question
 # question = "I want to run occasionally, what shoes should I buy?"
-question = "I need a water bottle"
+question = "shoes"
 
 # Create embedding
 question_embedding = openaiclient.embeddings.create(input=question, model=EMBEDDING_MODEL)
