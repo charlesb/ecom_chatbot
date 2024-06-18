@@ -1,10 +1,13 @@
 require('dotenv').config();
+const fs = require('fs');
+const tls = require('tls');
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-const { Client } = require('cassandra-driver');
+const { Client: CassandraClient } = require('cassandra-driver');
 const { Client: OpenSearchClient } = require('@opensearch-project/opensearch');
 const path = require('path');
+const { exit } = require('process');
 const comp_model = 'gpt-3.5-turbo'
 const emb_model = 'text-embedding-3-small'
 
@@ -12,10 +15,47 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname)); // Serve static files from the root directory
 
-// const cassandraClient = new Client({
-//     cloud: { secureConnectBundle: 'path_to_secure_bundle' },
-//     credentials: { username: 'your_username', password: 'your_password' }
-// });
+// Connect to Cassandra and retrieve customer profile and past transactions
+
+// Add port to list of endpoints
+const contactPoints = JSON.parse(process.env.CASSANDRA_CLUSTERS).map(cp => `${cp}:${process.env.CASSANDRA_PORT}`);
+
+const sslOptions = {
+    ca: [fs.readFileSync(path.resolve(__dirname, "./certs/ca.pem"))]
+}
+
+const cassandraClient = new CassandraClient({
+    contactPoints: contactPoints,
+    localDataCenter: process.env.CASSANDRA_DC,
+    credentials: { username: process.env.CASSANDRA_USER, password: process.env.CASSANDRA_PWD },
+    sslOptions
+});
+
+const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles WHERE name = ? ALLOW FILTERING';
+
+let name;
+let past_transactions
+
+try {
+    cassandraClient.execute(query, [ 'Charles' ])
+        .then(result => {
+            if(result.rows.length > 0) {
+                console.log('User with name %s', result.rows[0].name);
+                name = result.rows[0].name;
+                console.log('User with email %s', result.rows[0].email);
+                console.log('User with past transactions %s', result.rows[0].past_transactions);
+                past_transactions = result.rows[0].past_transactions;
+            } else {
+                console.log('No results found for the query');
+            }
+        })
+        .catch(error => {
+            console.error('An error occurred while executing the query:', error);
+        });
+} catch (error) {
+    console.error('An error occurred:', error);
+}
+
 
 const openSearchClient = new OpenSearchClient({
     node: process.env.OPENSEARCH_URI

@@ -1,4 +1,4 @@
-import os, ssl, json
+import os, ssl, json, uuid
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.policies import DCAwareRoundRobinPolicy
@@ -9,6 +9,15 @@ load_dotenv()
 
 # Path to the SSL certificate file
 SSL_CERTFILE = os.getenv("SSL_CERTFILE")
+
+# List of past transactions
+
+# Load products from the JSON file
+with open('import_data/products.json', 'r') as f:
+    products = json.load(f)
+
+# Select some products for the past transactions
+past_transactions = [product['sku'] for product in products[:4]]
 
 auth_provider = PlainTextAuthProvider(os.getenv("CASSANDRA_USER"), os.getenv("CASSANDRA_PWD"))
 ssl_options = {"ca_certs": SSL_CERTFILE, "cert_reqs": ssl.CERT_REQUIRED}
@@ -45,3 +54,9 @@ with Cluster(json.loads(os.getenv("CASSANDRA_CLUSTERS")), port=19748, ssl_option
                 PRIMARY KEY (user_id, timestamp)
             );
             """)
+
+            # Insert a profile customer_profiles if it does not exist
+            session.execute("""
+            INSERT INTO customer_profiles (user_id, name, email, past_transactions)
+            VALUES (%s, %s, %s, %s) IF NOT EXISTS;
+            """, (uuid.uuid4(), 'Charles', 'charles@example.com', past_transactions))
