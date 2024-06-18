@@ -1,5 +1,3 @@
-console.log('Hello, World!');
-
 async function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     const response = await fetch('/chat', {
@@ -8,5 +6,5 @@ async function sendMessage() {
         body: JSON.stringify({ message: userInput })
     });
     const data = await response.json();
-    document.getElementById('chat-window').innerHTML += `<p>User: ${userInput}</p><p>Bot: ${data.botMessage}</p>`;
+    document.getElementById('chat-window').innerHTML += `<p><strong>User:</strong> ${userInput}</p><p><strong>Bot:</strong> ${data.botMessage}</p>`;
 }

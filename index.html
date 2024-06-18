@@ -2,13 +2,53 @@
 <html>
 <head>
     <title>Sporting Goods Chat Bot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #chat-window {
+            width: 500px;
+            height: 400px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+        #user-input {
+            width: 400px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Sporting Goods Chat Bot</h1>
-    <div id="chat-window"></div>
-    <input type="text" id="user-input" placeholder="Ask me anything..."/>
-    <button onclick="sendMessage()">Send</button>
-    
+    <div class="container">
+        <h1>Sporting Goods Chat Bot</h1>
+        <div id="chat-window"></div>
+        <input type="text" id="user-input" placeholder="Ask me anything..."/>
+        <button onclick="sendMessage()">Send</button>
+    </div>
     <script src="client.js"></script>
 </body>
 </html>

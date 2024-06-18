@@ -57,7 +57,7 @@ const openSearchClient = new OpenSearchClient({
     node: process.env.OPENSEARCH_URI
 });
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => {;
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -100,13 +100,16 @@ app.post('/chat', async (req, res) => {
     const next_product_price = searchResponse.body.hits.hits[1]._source['price'];
 
     // Retrieve customer profile and past transactions
-    const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles WHERE name = ? ALLOW FILTERING';
-    const resutls = await cassandraClient.execute(query, [ 'Charles' ]);
-    const user_id = resutls.rows[0].user_id;
-    const name = resutls.rows[0].name;
-    const past_transactions = resutls.rows[0].past_transactions;
+    // const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles WHERE name = ? ALLOW FILTERING';
+    // const resutls = await cassandraClient.execute(query, [ 'Charles' ]);
+    const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles';
+    const results = await cassandraClient.execute(query);
+    const user_id = results.rows[0].user_id;
+    const name = results.rows[0].name;
+    const past_transactions = results.rows[0].past_transactions;
     console.log(name);
 
+    // Set prompt
     const system = `
         You are a virtual assistant for a Sporting Goods company that has both brick-and-mortar stores and an ecommerce website. Your role is to assist customers by providing information about the company's products, services, and customer support. You have access to customer profiles, past transactions, and the company's product database.
         
