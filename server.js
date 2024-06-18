@@ -1,11 +1,11 @@
 require('dotenv').config();
 const fs = require('fs');
-const tls = require('tls');
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const { Client: CassandraClient } = require('cassandra-driver');
 const { Client: OpenSearchClient } = require('@opensearch-project/opensearch');
+const Redis = require("ioredis");
 const path = require('path');
 const { exit } = require('process');
 const comp_model = 'gpt-3.5-turbo'
@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname)); // Serve static files from the root directory
 
 // Connect to Cassandra
-
 // Add port to list of endpoints
 const contactPoints = JSON.parse(process.env.CASSANDRA_CLUSTERS).map(cp => `${cp}:${process.env.CASSANDRA_PORT}`);
 
@@ -31,31 +30,13 @@ const cassandraClient = new CassandraClient({
     sslOptions
 });
 
-// const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles WHERE name = ? ALLOW FILTERING';
-
-// try {
-//     cassandraClient.execute(query, [ 'Charles' ])
-//         .then(result => {
-//             if(result.rows.length > 0) {
-//                 console.log('User with name %s', result.rows[0].name);
-//                 console.log('User with email %s', result.rows[0].email);
-//                 console.log('User with past transactions %s', result.rows[0].past_transactions);
-//             } else {
-//                 console.log('No results found for the query');
-//             }
-//         })
-//         .catch(error => {
-//             console.error('An error occurred while executing the query:', error);
-//         });
-// } catch (error) {
-//     console.error('An error occurred:', error);
-// }
-
 // Connect to OpenSearch
-
 const openSearchClient = new OpenSearchClient({
     node: process.env.OPENSEARCH_URI
 });
+
+// Connect to Redis
+const redis = new Redis(process.env.REDIS_URI);
 
 app.get('/', (req, res) => {;
     res.sendFile(path.join(__dirname, 'index.html'));
@@ -102,12 +83,18 @@ app.post('/chat', async (req, res) => {
     // Retrieve customer profile and past transactions
     // const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles WHERE name = ? ALLOW FILTERING';
     // const resutls = await cassandraClient.execute(query, [ 'Charles' ]);
-    const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles';
-    const results = await cassandraClient.execute(query);
-    const user_id = results.rows[0].user_id;
-    const name = results.rows[0].name;
-    const past_transactions = results.rows[0].past_transactions;
-    console.log(name);
+    // const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles';
+    // const results = await cassandraClient.execute(query);
+    // const user_id = results.rows[0].user_id;
+    // const name = results.rows[0].name;
+    // const past_transactions = results.rows[0].past_transactions;
+    // console.log(name);
+
+    // Retrieve customer profile and past transactions from Redis
+    const user_id = '551dfc94-764a-4839-b8db-e6f04b5715c6';
+    const value = await redis.get(user_id);
+    const customer_profile = JSON.parse(value);
+    console.log(customer_profile);
 
     // Set prompt
     const system = `
@@ -124,8 +111,8 @@ app.post('/chat', async (req, res) => {
 
     const assistant = `
         Here is the customer information:
-        Customer name: ${name}
-        Customer past transactions: ${past_transactions}
+        Customer name: ${customer_profile.name}
+        Customer past transactions: ${customer_profile.past_transactions}
 
         Here is the top product that the user is interested in, based on the semantic search results:
         Top product name: ${top_product_name}
@@ -153,6 +140,7 @@ app.post('/chat', async (req, res) => {
     const botMessage = completion.data.choices[0].message.content;
     
     // Save conversation to Cassandra
+    // Idealy this will be pushed to a kafka topic and then consumed by a consumer to save to cassandra
     cassandraClient.execute('INSERT INTO customers.conversations (user_id, timestamp, message, response) VALUES (?, ?, ?, ?)', [user_id, Date.now(), userMessage, botMessage]);
     
     res.json({ botMessage });
