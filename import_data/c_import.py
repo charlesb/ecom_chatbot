@@ -35,14 +35,14 @@ with Cluster(json.loads(os.getenv("CASSANDRA_CLUSTERS")), port=19748, ssl_option
             session.execute("USE customers;")
             
             # Create customer_profiles table if it does not exist
-            session.execute("""
-            CREATE TABLE IF NOT EXISTS customer_profiles (
-                user_id UUID PRIMARY KEY,
-                name TEXT,
-                email TEXT,
-                past_transactions LIST<TEXT>
-            );
-            """)
+            # session.execute("""
+            # CREATE TABLE IF NOT EXISTS customer_profiles (
+            #     user_id UUID PRIMARY KEY,
+            #     name TEXT,
+            #     email TEXT,
+            #     past_transactions LIST<TEXT>
+            # );
+            # """)
 
             # Create conversations table if it does not exist
             session.execute("""
@@ -56,7 +56,7 @@ with Cluster(json.loads(os.getenv("CASSANDRA_CLUSTERS")), port=19748, ssl_option
             """)
 
             # Insert a profile customer_profiles if it does not exist
-            session.execute("""
-            INSERT INTO customer_profiles (user_id, name, email, past_transactions)
-            VALUES (%s, %s, %s, %s) IF NOT EXISTS;
-            """, (uuid.uuid4(), 'Charles', 'charles@example.com', past_transactions))
+            # session.execute("""
+            # INSERT INTO customer_profiles (user_id, name, email, past_transactions)
+            # VALUES (%s, %s, %s, %s) IF NOT EXISTS;
+            # """, (uuid.uuid4(), 'Charles', 'charles@example.com', past_transactions))

@@ -22,7 +22,7 @@ value = json.loads(redis_client.get(key).decode('utf-8'))
 print('The value of key is:', value)
 
 # Delete the key
-redis_client.delete('key')
+# redis_client.delete('key')
 
 # Get all key value pairs
 print(redis_client.keys())
