@@ -84,11 +84,10 @@ app.post('/chat', async (req, res) => {
     console.log("Recommended product: " + next_product_name);
 
     // Retrieve customer profile and past transactions
-    // const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles WHERE name = ? ALLOW FILTERING';
-    // const resutls = await cassandraClient.execute(query, [ 'Charles' ]);
+    // const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles WHERE user_id = ?';
+    // const resutls = await cassandraClient.execute(query, [ '551dfc94-764a-4839-b8db-e6f04b5715c6' ]);
     // const query = 'SELECT user_id, name, email, past_transactions FROM customers.customer_profiles';
     // const results = await cassandraClient.execute(query);
-    // const user_id = results.rows[0].user_id;
     // const name = results.rows[0].name;
     // const past_transactions = results.rows[0].past_transactions;
     // console.log(name);
