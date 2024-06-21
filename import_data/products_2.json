@@ -1,0 +1,102 @@
+[
+    {
+        "page_content": "ProMax Running Shoes (Price: $120.0, SKU: PMRS123) - High-performance running shoes designed for comfort and durability. Features a breathable mesh upper and responsive cushioning.",
+        "metadata": {
+            "name": "ProMax Running Shoes",
+            "category": "Footwear",
+            "price": 120.0,
+            "sku": "PMRS123",
+            "tags": ["running", "shoes", "footwear", "breathable", "cushioning"]
+        }
+    },
+    {
+        "page_content": "UltraFlex Yoga Mat (Price: $45.0, SKU: UFYM456) - Non-slip yoga mat with extra cushioning for maximum comfort. Ideal for yoga, Pilates, and floor exercises.",
+        "metadata": {
+            "name": "UltraFlex Yoga Mat",
+            "category": "Fitness Equipment",
+            "price": 45.0,
+            "sku": "UFYM456",
+            "tags": ["yoga", "mat", "fitness", "non-slip", "cushioning"]
+        }
+    },
+    {
+        "page_content": "PowerLift Dumbbell Set (Price: $200.0, SKU: PLDS789) - Adjustable dumbbell set with a range of weights from 5 to 50 lbs. Perfect for home workouts and strength training.",
+        "metadata": {
+            "name": "PowerLift Dumbbell Set",
+            "category": "Strength Training",
+            "price": 200.0,
+            "sku": "PLDS789",
+            "tags": ["dumbbells", "strength training", "adjustable", "weights"]
+        }
+    },
+    {
+        "page_content": "SwiftStrike Tennis Racket (Price: $150.0, SKU: SSTR101) - Lightweight and durable tennis racket designed for precision and power. Suitable for players of all skill levels.",
+        "metadata": {
+            "name": "SwiftStrike Tennis Racket",
+            "category": "Sports Equipment",
+            "price": 150.0,
+            "sku": "SSTR101",
+            "tags": ["tennis", "racket", "sports", "lightweight", "durable"]
+        }
+    },
+    {
+        "page_content": "HydroBoost Water Bottle (Price: $25.0, SKU: HBWB202) - Insulated water bottle that keeps drinks cold for up to 24 hours. Made from BPA-free stainless steel.",
+        "metadata": {
+            "name": "HydroBoost Water Bottle",
+            "category": "Accessories",
+            "price": 25.0,
+            "sku": "HBWB202",
+            "tags": ["water bottle", "insulated", "BPA-free", "stainless steel"]
+        }
+    },
+    {
+        "page_content": "TrailBlazer Hiking Backpack (Price: $110.0, SKU: TBHB303) - Rugged hiking backpack with multiple compartments and hydration system compatibility. Designed for long treks and outdoor adventures.",
+        "metadata": {
+            "name": "TrailBlazer Hiking Backpack",
+            "category": "Outdoor Gear",
+            "price": 110.0,
+            "sku": "TBHB303",
+            "tags": ["hiking", "backpack", "outdoor", "rugged", "hydration system"]
+        }
+    },
+    {
+        "page_content": "ProGear Soccer Ball (Price: $30.0, SKU: PGSC404) - Official size and weight soccer ball with enhanced grip and durability. Ideal for both practice and competitive play.",
+        "metadata": {
+            "name": "ProGear Soccer Ball",
+            "category": "Sports Equipment",
+            "price": 30.0,
+            "sku": "PGSC404",
+            "tags": ["soccer", "ball", "sports", "grip", "durability"]
+        }
+    },
+    {
+        "page_content": "FlexFit Athletic Wear Set (Price: $60.0, SKU: FFAW505) - Comfortable and moisture-wicking athletic wear set including a t-shirt and shorts. Perfect for workouts and casual wear.",
+        "metadata": {
+            "name": "FlexFit Athletic Wear Set",
+            "category": "Apparel",
+            "price": 60.0,
+            "sku": "FFAW505",
+            "tags": ["athletic wear", "apparel", "moisture-wicking", "comfortable"]
+        }
+    },
+    {
+        "page_content": "CoreBalance Stability Ball (Price: $35.0, SKU: CBSB606) - Stability ball for core strengthening exercises and improved balance. Comes with an air pump for easy inflation.",
+        "metadata": {
+            "name": "CoreBalance Stability Ball",
+            "category": "Fitness Equipment",
+            "price": 35.0,
+            "sku": "CBSB606",
+            "tags": ["stability ball", "fitness", "core strengthening", "balance"]
+        }
+    },
+    {
+        "page_content": "SpeedMaster Running Watch (Price: $180.0, SKU: SMRW707) - GPS-enabled running watch with heart rate monitoring and fitness tracking features. Water-resistant and lightweight design.",
+        "metadata": {
+            "name": "SpeedMaster Running Watch",
+            "category": "Accessories",
+            "price": 180.0,
+            "sku": "SMRW707",
+            "tags": ["running watch", "GPS", "heart rate monitoring", "fitness tracking", "water-resistant"]
+        }
+    }
+]
