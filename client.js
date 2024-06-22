@@ -9,5 +9,5 @@ async function sendMessage() {
         body: JSON.stringify({ message: userInput, context: context})
     });
     const data = await response.json();
-    document.getElementById('chat-window').innerHTML += `<p><strong>User:</strong> ${userInput}</p><p><strong>Bot:</strong> ${data.botMessage}</p>`;
+    document.getElementById('chat-window').innerHTML += `<p class="user-message"><strong>User:</strong> ${userInput}</p><p class="assistant-message"><strong>Assistant:</strong> ${data.botMessage}</p>`;
 }

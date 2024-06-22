@@ -151,14 +151,15 @@ async function promptLoop() {
 
     let userInput;
     while (userInput !== 'exit') {
-      userInput = await askQuestion(`What is your question, ${customerProfile.name}? (type "exit" to quit) `);
-      console.log(`You asked: ${userInput}`);
-      // Here you can add the logic to process the question, e.g., runChainWithChatHistory(userInput).then(console.log);
-      if (userInput !== 'exit') {
-        await runChainWithChatHistory(userInput, customerProfile.name, customerProfile.past_transactions).then(response => console.log("Assitant:", response)); 
-      }
+        userInput = await askQuestion(`\u001b[38;5;45mWhat is your question, ${customerProfile.name}? (type "exit" to quit)> `);
+        // console.log(`You asked: ${userInput}`);
+        if (userInput !== 'exit') {
+            await runChainWithChatHistory(userInput, customerProfile.name, customerProfile.past_transactions).then(response => console.log("\u001b[38;5;214mAssitant>", response)); 
+        }
     }
     rl.close(); // Close the readline interface when done
+    // Reset color
+    console.log("\u001b[0mSee you next time!");
     process.exit();
   }
   
